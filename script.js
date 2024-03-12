@@ -11,7 +11,7 @@ function getComputerChoice (){
     }
 }
 
-function rps (playerSelection, computerSelection) {
+function playRound (playerSelection, computerSelection) {
     playerSelection=playerSelection.toLowerCase();
     if (playerSelection==="rock") {
         if (computerSelection===rock) {
@@ -59,13 +59,13 @@ function rps (playerSelection, computerSelection) {
 
 }
 
-function playGame () {
+/*function playGame () {
     let playerScore=0;
     let computerScore=0;
     let result = "";
     while (playerScore<3 && computerScore<3) {
         let pr=prompt("Rock Paper Scissors", "");
-        result = rps(pr,getComputerChoice());
+        result = playRound(pr,getComputerChoice());
     if (result.includes("win")=== true) {
         playerScore+=1;
         console.log ("win");
@@ -87,14 +87,21 @@ function playGame () {
 
 
 }
-return "Player Score: " + playerScore + " Computer Score: " + computerScore;
+return "Player Score: " + playerScore + " Computer Score: " + computerScore;   
 }
+*/
 
 let rock="rock";
 let paper="paper";
 let scissors="scissors"
 
+const buttons = document.querySelectorAll("button");
+for (btn of buttons) {
+    btn.addEventListener("click", e => {
+        console.log(playRound(e.target.textContent, getComputerChoice()));
+    });
+}
 
-console.log(playGame ());
+
 
 
