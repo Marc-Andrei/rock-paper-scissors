@@ -91,16 +91,49 @@ return "Player Score: " + playerScore + " Computer Score: " + computerScore;
 }
 */
 
+function updateScore (result) {
+    
+    winnerDiv.textContent = "";
+    if (result.includes("win")) {
+        playerScore+=1;
+    }
+
+    else if (result.includes("lose")) {
+        computerScore+=1;
+
+    }
+    playerDiv.textContent = `Player score: ${playerScore}`;
+    computerDiv.textContent = `Computer score: ${computerScore}`;
+    if (playerScore>4) {
+        winnerDiv.textContent = "You win!";
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore > 4) {
+        winnerDiv.textContent = "You lose!";
+        playerScore = 0;
+        computerScore = 0;
+    }
+}
+    
+
 let rock="rock";
 let paper="paper";
 let scissors="scissors"
+let playerScore=0;
+let computerScore=0;
 
 const buttons = document.querySelectorAll("button");
+const currentResult = document.querySelector(".result");
+const playerDiv = document.querySelector(".playerScore");
+const computerDiv = document.querySelector(".computerScore");
+const winnerDiv = document.querySelector(".winner");
 for (btn of buttons) {
     btn.addEventListener("click", e => {
-        console.log(playRound(e.target.textContent, getComputerChoice()));
+        currentResult.textContent = playRound(e.target.textContent, getComputerChoice());
+        updateScore(currentResult.textContent);
     });
 }
+
 
 
 
